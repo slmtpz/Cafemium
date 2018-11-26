@@ -1,110 +1,50 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <title>Bootstrap Example</title>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-  <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
-  <link rel="stylesheet" type="text/css" href="../static/css/styles.css">
-  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+{% extends 'base.html' %}
 
-    <script>
-        var slots = [
-            {name: 'Masa 1', bill: 100, time: 60, playerCount: 4, extraCount: 15},
-            {name: 'Masa 2', bill: 120, time: 34, playerCount: 3, extraCount: 5},
-            {name: 'Masa 3', bill: 140, time: 57, playerCount: 1, extraCount: 1},
-            {name: 'Masa 4', bill: 160, time: 123, playerCount: 2, extraCount: 0},
-            {name: 'Masa 5', bill: 180, time: 22, playerCount: 4, extraCount: 32},
-            {name: 'Masa 6', bill: 200, time: 123, playerCount: 4, extraCount: 2},
-            {name: 'Masa 6', bill: 200, time: 123, playerCount: 4, extraCount: 2},
-            {name: 'Masa 6', bill: 200, time: 123, playerCount: 4, extraCount: 2},
-            {name: 'Masa 6', bill: 200, time: 123, playerCount: 4, extraCount: 2},
-            {name: 'Masa 6', bill: 200, time: 123, playerCount: 4, extraCount: 2},
-            {name: 'Masa 6', bill: 200, time: 123, playerCount: 4, extraCount: 2},
-        ];
+{% block content %}
 
-        $(document).ready(function(){
-            populateSlots(slots)
-        });
-    </script>
+<script>
+    $(document).ready(function() {
+        $("#navbar").load("navbar.html");
+        getSlotsAndUpdate();
+        setInterval(getSlotsAndUpdate, 10000)
+    });
 
-    <script>
-        function openNav() {
-            document.getElementById("detailsPanel").style.width = "350px";
-        }
+    function getSlotsAndUpdate() {
+        $.get("/getSlots", function(response) {
+            $("#slotContainer").html(response);
 
-        function closeNav() {
-            document.getElementById("detailsPanel").style.width = "0";
-        }
-
-        $(document).ready(function(){
-            $(".panel").click(function(){
-                openNav()
+            $(".panel").click(function(event){
+                var elem = $(event.currentTarget)[0];
+                var slotName = elem.innerText.split('\n')[0];
+                $.get("/getSlotDetails/" + slotName, function(response) {
+                    console.log($.parseJSON(response))
+                });
+                openDetailsPanel()
             });
-        });
+        })
+    }
+</script>
 
-        function populateSlots(slots) {
-            var str = '';
-            slots.forEach(function (slot) {
-                str += "<div class=\"col-sm-3 text-center\">";
-                str += "<div class=\"panel panel-danger panel-slot\">";
-                str += "<div class=\"panel-heading\">";
-                str += "<h3>" + slot.name + "</h3>";
-                str += "</div>";
-                str += "<div class=\"panel-body text-center\">";
-                str += "<div class=\"col-md-6 text-center\">" + slot.bill + " TL</div>";
-                str += "<div class=\"col-md-6 text-center\">" + slot.time + " dk</div>";
-                str += "</div>";
-                str += "<div class=\"panel-footer\">";
-                str += slot.playerCount + " <i class=\"fas fa-users\"></i> " + slot.extraCount + " <i class=\"fas fa-plus\"></i>";
-                str += "</div>";
-                str += "</div>";
-                str += "</div>";
-            });
+<script>
+    function openDetailsPanel() {
+        document.getElementById("detailsPanel").style.width = "350px";
+    }
 
-            document.getElementById("slotContainer").innerHTML = str;
-        }
-    </script>
-</head>
-<body>
+    function closeDetailsPanel() {
+        document.getElementById("detailsPanel").style.width = "0";
+    }
+</script>
+
 
 <div id="detailsPanel" class="sidepanel">
-  <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+  <a href="javascript:void(0)" class="closebtn" onclick="closeDetailsPanel()">&times;</a>
   <a href="#">About</a>
   <a href="#">Services</a>
   <a href="#">Clients</a>
   <a href="#">Contact</a>
 </div>
 
-<nav class="navbar navbar-inverse navbar-fixed-top">
-  <div class="container-fluid">
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-      <a class="navbar-brand" href="cafe.html">Cafemium</a>
-    </div>
-    <div class="collapse navbar-collapse" id="myNavbar">
-      <ul class="nav navbar-nav">
-        <li class="active"><a href="cafe.html">Kafe</a></li>
-        <li><a href="summary.html">Özet</a></li>
-        <li><a href="analysis.html">Analiz</a></li>
-        <li><a href="authorities.html">Yetkililer</a></li>
-      </ul>
-      <ul class="nav navbar-nav navbar-right">
-        <li><a href="#"><span class="glyphicon glyphicon-user"></span> Your Account</a></li>
-      </ul>
-    </div>
-  </div>
-</nav>
 
-<div id="slotContainer" class="main">
-</div>
+<div id="slotContainer" class="main"></div>
 
-</body>
-</html>
+{% endblock %}

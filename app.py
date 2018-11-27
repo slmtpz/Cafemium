@@ -29,6 +29,11 @@ def serve_authorities_page():
     return render_template('authorities.html')
 
 
+@app.route('/user')
+def serve_user_page():
+    return render_template('user.html')
+
+
 @app.route('/getSlots')
 def serve_slots():
     from random import randint

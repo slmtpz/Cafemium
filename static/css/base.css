@@ -1,0 +1,13 @@
+body {
+    background-color: #555555;
+}
+
+.navbar {
+    border-radius: 0;
+    overflow: hidden;
+}
+
+.main {
+    margin-top: 50px;
+    padding: 30px 6% 0 6%;
+}

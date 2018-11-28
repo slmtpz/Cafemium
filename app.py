@@ -1,4 +1,4 @@
-from flask import Flask, render_template, redirect, url_for
+from flask import Flask, render_template, redirect, url_for, request
 import json
 
 app = Flask(__name__)
@@ -32,6 +32,26 @@ def serve_authorities_page():
 @app.route('/user')
 def serve_user_page():
     return render_template('user.html')
+
+
+@app.route('/signupClient', methods=['POST'])
+def register_new_client():
+    firm_name = request.form['firmName']
+    name = request.form['name']
+    email = request.form['email']
+    phone = request.form['phone']
+    password = request.form['password']
+    return ''
+
+
+@app.route('/signupUser', methods=['POST'])
+def register_new_user():
+    print(request.data)
+    name = request.form['name']
+    email = request.form['email']
+    phone = request.form['phone']
+    password = request.form['password']
+    return ''
 
 
 @app.route('/getSlots')

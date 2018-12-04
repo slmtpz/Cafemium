@@ -2,136 +2,85 @@
 
 {% block content %}
 
-<div class="main">
+<link rel="stylesheet" type="text/css" href="../static/css/signup.css">
 
-    <style type="text/css">
-        .modal-signup {
-            width: 320px;
-        }
-        .modal-signup .modal-content {
-            border-radius: 1px;
-            border: none;
-        }
-        .modal-signup .modal-header {
-            position: relative;
-            justify-content: center;
-            background: #f2f2f2;
-        }
-        .modal-signup .modal-body {
-            padding: 30px;
-        }
-        .modal-signup .modal-footer {
-            background: #f2f2f2;
-        }
-        .modal-signup h4 {
-            text-align: center;
-            font-size: 26px;
-        }
-        .modal-signup label {
-            font-weight: normal;
-            font-size: 13px;
-        }
-        .modal-signup .form-control, .modal-signup .btn {
-            min-height: 38px;
-            border-radius: 2px;
-        }
-        .modal-signup .close {
-            position: absolute;
-            top: 15px;
-            right: 15px;
-        }
-        .modal-signup .btn {
-            min-width: 100px;
-            background: #3498db;
-            border: none;
-            line-height: normal;
-        }
-        .modal-signup .btn:hover, .modal-signup .btn:focus {
-            background: #248bd0;
-        }
-        .modal-signup .hint-text a {
-            color: #999;
-        }
-    </style>
+<button type="button" class="btn btn-primary" href="#signupClientModal" data-toggle="modal">Yeni musteri kaydet</button>
+<br/><br/>
+<button type="button" class="btn btn-primary" href="#signupUserModal" data-toggle="modal">Yeni kullanici kaydet</button>
 
-    <button type="button" class="btn btn-primary" href="#signupClientModal" data-toggle="modal">Yeni musteri kaydet</button>
-    <br/><br/>
-    <button type="button" class="btn btn-primary" href="#signupUserModal" data-toggle="modal">Yeni kullanici kaydet</button>
-
-    <div id="signupClientModal" class="modal fade">
-        <div class="modal-dialog modal-signup">
-            <div class="modal-content">
-                <form action="/signupClient" method="post">
-                    <div class="modal-header">
-                        <h4 class="modal-title">Kaydet</h4>
-                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+<div id="signupClientModal" class="modal fade">
+    <div class="modal-dialog modal-signup">
+        <div class="modal-content">
+            <form action="/signupClient" method="post">
+                <div class="modal-header">
+                    <h4 class="modal-title">Kaydet</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label>Isletme Ismi</label>
+                        <input type="text" class="form-control" required="required" name="firmName">
                     </div>
-                    <div class="modal-body">
-                        <div class="form-group">
-                            <label>Isletme Ismi</label>
-                            <input type="text" class="form-control" required="required" name="firmName">
-                        </div>
-                        <div class="form-group">
-                            <label>Isim</label>
-                            <input type="text" class="form-control" required="required" name="name">
-                        </div>
-                        <div class="form-group">
-                            <label>E-mail</label>
-                            <input type="text" class="form-control" required="required" name="email">
-                        </div>
-                        <div class="form-group">
-                            <label>Telefon</label>
-                            <input type="number" class="form-control" required="required" name="phone">
-                        </div>
-                        <div class="form-group">
-                            <div class="clearfix">
-                                <label>Sifre</label>
-                            </div>
-                            <input type="password" class="form-control" required="required" name="password">
-                        </div>
+                    <div class="form-group">
+                        <label>Isim</label>
+                        <input type="text" class="form-control" required="required" name="name">
                     </div>
-                    <div class="modal-footer">
-                        <input type="submit" class="btn btn-primary pull-right" value="Kaydet">
+                    <div class="form-group">
+                        <label>E-mail</label>
+                        <input type="text" class="form-control" required="required" name="email">
                     </div>
-                </form>
-            </div>
+                    <div class="form-group">
+                        <label>Telefon</label>
+                        <input type="number" class="form-control" required="required" name="phone">
+                    </div>
+                    <div class="form-group">
+                        <div class="clearfix">
+                            <label>Sifre</label>
+                        </div>
+                        <input type="password" class="form-control" required="required" name="password">
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <input type="submit" class="btn btn-primary pull-right" value="Kaydet">
+                </div>
+            </form>
         </div>
     </div>
-    <div id="signupUserModal" class="modal fade">
-        <div class="modal-dialog modal-signup">
-            <div class="modal-content">
-                <form action="/signupUser" method="post">
-                    <div class="modal-header">
-                        <h4 class="modal-title">Kaydet</h4>
-                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                    </div>
-                    <div class="modal-body">
-                        <div class="form-group">
-                            <label>Isim</label>
-                            <input type="text" class="form-control" required="required" name="name">
-                        </div>
-                        <div class="form-group">
-                            <label>E-mail</label>
-                            <input type="text" class="form-control" required="required" name="email">
-                        </div>
-                        <div class="form-group">
-                            <label>Telefon</label>
-                            <input type="number" class="form-control" required="required" name="phone">
-                        </div>
-                        <div class="form-group">
-                            <div class="clearfix">
-                                <label>Sifre</label>
-                            </div>
-                            <input type="password" class="form-control" required="required" name="password">
-                        </div>
-                    </div>
-                    <div class="modal-footer">
-                        <input type="submit" class="btn btn-primary pull-right" value="Kaydet">
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
-
 </div>
+<div id="signupUserModal" class="modal fade">
+    <div class="modal-dialog modal-signup">
+        <div class="modal-content">
+            <form action="/signupUser" method="post">
+                <div class="modal-header">
+                    <h4 class="modal-title">Kaydet</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label>Isim</label>
+                        <input type="text" class="form-control" required="required" name="name">
+                    </div>
+                    <div class="form-group">
+                        <label>E-mail</label>
+                        <input type="text" class="form-control" required="required" name="email">
+                    </div>
+                    <div class="form-group">
+                        <label>Telefon</label>
+                        <input type="number" class="form-control" required="required" name="phone">
+                    </div>
+                    <div class="form-group">
+                        <div class="clearfix">
+                            <label>Sifre</label>
+                        </div>
+                        <input type="password" class="form-control" required="required" name="password">
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <input type="submit" class="btn btn-primary pull-right" value="Kaydet">
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
 {% endblock %}

@@ -1,0 +1,47 @@
+.modal-signup {
+    width: 320px;
+}
+.modal-signup .modal-content {
+    border-radius: 1px;
+    border: none;
+}
+.modal-signup .modal-header {
+    position: relative;
+    justify-content: center;
+    background: #f2f2f2;
+}
+.modal-signup .modal-body {
+    padding: 30px;
+}
+.modal-signup .modal-footer {
+    background: #f2f2f2;
+}
+.modal-signup h4 {
+    text-align: center;
+    font-size: 26px;
+}
+.modal-signup label {
+    font-weight: normal;
+    font-size: 13px;
+}
+.modal-signup .form-control, .modal-signup .btn {
+    min-height: 38px;
+    border-radius: 2px;
+}
+.modal-signup .close {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+}
+.modal-signup .btn {
+    min-width: 100px;
+    background: #3498db;
+    border: none;
+    line-height: normal;
+}
+.modal-signup .btn:hover, .modal-signup .btn:focus {
+    background: #248bd0;
+}
+.modal-signup .hint-text a {
+    color: #999;
+}

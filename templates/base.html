@@ -60,18 +60,35 @@
                       htmlStr += '</ul>';
                       htmlStr += '<ul class="nav navbar-nav navbar-right">';
                       navMenu = [
-                          ['user', 'Hesap']
+                          ['user',  '{{ current_user['name'] }}'],
+                          ['logout', 'Cikis']
                       ];
                       htmlStr = addNavToBar(navMenu, htmlStr);
                       htmlStr += '</ul>';
 
                       navContainer.insertAdjacentHTML('beforeend', htmlStr);
+
+                      console.log(self)
                   </script>
             </div>
           </div>
         </nav>
 
-        {% block content %}
-        {% endblock %}
+        <div class="main">
+            {% with messages = get_flashed_messages() %}
+              {% if messages %}
+                  <div class="alert alert-warning">
+                    <ul class=flashes>
+                    {% for message in messages %}
+                      <li>{{ message }}</li>
+                    {% endfor %}
+                    </ul>
+                  </div>
+              {% endif %}
+            {% endwith %}
+
+            {% block content %}
+            {% endblock %}
+        </div>
     </body>
 </html>

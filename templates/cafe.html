@@ -2,51 +2,51 @@
 
 {% block content %}
 
-<link rel="stylesheet" type="text/css" href="../static/css/cafe.css">
+    <link rel="stylesheet" type="text/css" href="../static/css/cafe.css">
 
-<script>
-    $(document).ready(function() {
-        $("#navbar").load("navbar.html");
-        getSlotsAndUpdate();
-        setInterval(getSlotsAndUpdate, 10000)
-    });
+    <script>
+        $(document).ready(function () {
+            $("#navbar").load("navbar.html");
+            getSlotsAndUpdate();
+            setInterval(getSlotsAndUpdate, 10000)
+        });
 
-    function getSlotsAndUpdate() {
-        $.get("/getSlots", function(response) {
-            $("#slotContainer").html(response);
+        function getSlotsAndUpdate() {
+            $.get("/getSlots", function (response) {
+                $("#slotContainer").html(response);
 
-            $(".panel").click(function(event){
-                var elem = $(event.currentTarget)[0];
-                var slotName = elem.innerText.split('\n')[0];
-                $.get("/getSlotDetails/" + slotName, function(response) {
-                    console.log($.parseJSON(response))
+                $(".panel").click(function (event) {
+                    var elem = $(event.currentTarget)[0];
+                    var slotName = elem.innerText.split('\n')[0];
+                    $.get("/getSlotDetails/" + slotName, function (response) {
+                        console.log($.parseJSON(response))
+                    });
+                    openDetailsPanel()
                 });
-                openDetailsPanel()
-            });
-        })
-    }
-</script>
+            })
+        }
+    </script>
 
-<script>
-    function openDetailsPanel() {
-        document.getElementById("detailsPanel").style.width = "350px";
-    }
+    <script>
+        function openDetailsPanel() {
+            document.getElementById("detailsPanel").style.width = "350px";
+        }
 
-    function closeDetailsPanel() {
-        document.getElementById("detailsPanel").style.width = "0";
-    }
-</script>
+        function closeDetailsPanel() {
+            document.getElementById("detailsPanel").style.width = "0";
+        }
+    </script>
 
 
-<div id="detailsPanel" class="sidepanel">
-  <a href="javascript:void(0)" class="closebtn" onclick="closeDetailsPanel()">&times;</a>
-  <a href="#">About</a>
-  <a href="#">Services</a>
-  <a href="#">Clients</a>
-  <a href="#">Contact</a>
-</div>
+    <div id="detailsPanel" class="sidepanel">
+        <a href="javascript:void(0)" class="closebtn" onclick="closeDetailsPanel()">&times;</a>
+        <a href="#">About</a>
+        <a href="#">Services</a>
+        <a href="#">Clients</a>
+        <a href="#">Contact</a>
+    </div>
 
 
-<div id="slotContainer"></div>
+    <div id="slotContainer"></div>
 
 {% endblock %}

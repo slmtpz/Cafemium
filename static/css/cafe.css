@@ -1,20 +1,24 @@
 .panel-slot {
-  -moz-transition: all .3s ease;
-  -o-transition: all .3s ease;
-  -webkit-transition: all .3s ease;
+    -moz-transition: all .3s ease;
+    -o-transition: all .3s ease;
+    -webkit-transition: all .3s ease;
 }
+
 .panel-slot:hover {
-  box-shadow: 0 0 50px rgba(255, 255, 255, 0.5);
+    box-shadow: 0 0 50px rgba(255, 255, 255, 0.5);
 }
+
 .panel-slot .panel-heading {
     padding: 1px 15px;
 }
+
 .panel-slot .panel-body {
-  background-color: #f0f0f0;
-  font-size: 22px;
-  color: #777777;
+    background-color: #f0f0f0;
+    font-size: 22px;
+    color: #777777;
     margin-bottom: -10px;
 }
+
 .panel-slot .panel-footer {
     background-color: #ffffff;
     color: #777777;
@@ -61,14 +65,14 @@
 
 /* Style the button that is used to open the sidepanel */
 .openbtn {
-  font-size: 20px;
-  cursor: pointer;
-  background-color: #111;
-  color: white;
-  padding: 10px 15px;
-  border: none;
+    font-size: 20px;
+    cursor: pointer;
+    background-color: #111;
+    color: white;
+    padding: 10px 15px;
+    border: none;
 }
 
 .openbtn:hover {
-  background-color: #444;
+    background-color: #444;
 }

@@ -15,5 +15,7 @@ def limit_to_role(role):
             else:
                 flash('Sayfaya erişim yetkiniz yok.')
                 return redirect('user')
+
         return role_check_fnc
+
     return decorator

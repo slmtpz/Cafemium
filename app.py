@@ -6,7 +6,6 @@ from werkzeug.security import generate_password_hash, check_password_hash
 from config import SECRET_KEY
 from utils import decorators
 
-
 app = Flask(__name__)
 app.secret_key = SECRET_KEY
 
@@ -144,7 +143,7 @@ def serve_slots():
         'time': randint(0, 120),
         'playerCount': randint(1, 4),
         'extraCount': randint(0, 5)
-    } for _ in range(randint(7,10))]
+    } for _ in range(randint(7, 10))]
 
     return render_template('slots.html', slots=slots)
 

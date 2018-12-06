@@ -1,98 +1,113 @@
 <!doctype html>
 <html lang="en">
-    <head>
-        <meta charset="utf-8"/>
-        <title>Cafemium</title>
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-        <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
-        <link rel="stylesheet" type="text/css" href="../static/css/base.css">
-        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
-        <script>
-            var roles = {
-                'admin': 10,
-                'client': 7,
-                'user': 4
-            };
-        </script>
-    </head>
-    <body>
-        <nav class="navbar navbar-inverse navbar-fixed-top">
-          <div class="container-fluid">
-            <div class="navbar-header">
-              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#mainNavbar">
+<head>
+    <meta charset="utf-8"/>
+    <title>Cafemium</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+    <link rel="stylesheet" type="text/css" href="../static/css/base.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css"
+          integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+    <script>
+        var roles = {
+            'admin': 10,
+            'client': 7,
+            'user': 4
+        };
+    </script>
+</head>
+<body>
+<nav class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#mainNavbar">
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
-              </button>
-              <a class="navbar-brand" href="cafe">{{ current_user['firm_name'] }}</a>
-            </div>
-            <div class="collapse navbar-collapse" id="mainNavbar">
-                 <script>
-                     function getGlyphIfApplicable(navElem) {
-                         if (navElem === 'user') {
-                             return '<span class="glyphicon glyphicon-user"></span> '
-                         }
-                         return ''
-                     }
-                      function addNavToBar(navMenu, htmlStr) {
-                          navMenu.forEach(function(navElem) {
-                              if (currPage === navElem[0]) {
-                                  htmlStr += '<li class="active"><a href="' + navElem[0] + '">';
-                                  htmlStr += getGlyphIfApplicable(navElem[0]);
-                                  htmlStr += navElem[1] + '</a></li>'
-                              } else {
-                                  htmlStr += '<li><a href="' + navElem[0] + '">';
-                                  htmlStr += getGlyphIfApplicable(navElem[0]);
-                                  htmlStr += navElem[1] + '</a></li>'
-                              }
-                          });
-                          return htmlStr
-                      }
-
-                      var navContainer = document.getElementById('mainNavbar');
-                      var htmlStr = '';
-                      htmlStr += '<ul class="nav navbar-nav">';
-                      var currPage = $(this)[0].location.pathname.slice(1);
-                      var navMenu = [
-                          ['cafe', 'Kafe'],
-                          ['summary', 'Özet'],
-                          ['analysis', 'Analiz'],
-                          ['authorities', 'Yetkililer']
-                      ];
-                      htmlStr = addNavToBar(navMenu, htmlStr);
-                      htmlStr += '</ul>';
-                      htmlStr += '<ul class="nav navbar-nav navbar-right">';
-                      navMenu = [
-                          ['user',  '{{ current_user['name'] }}'],
-                          ['logout', 'Çıkış']
-                      ];
-                      htmlStr = addNavToBar(navMenu, htmlStr);
-                      htmlStr += '</ul>';
-
-                      navContainer.insertAdjacentHTML('beforeend', htmlStr);
-                  </script>
-            </div>
-          </div>
-        </nav>
-
-        <div class="main">
-            {% with messages = get_flashed_messages() %}
-              {% if messages %}
-                  <div class="alert alert-warning">
-                    <ul class=flashes>
-                    {% for message in messages %}
-                      <li>{{ message }}</li>
-                    {% endfor %}
-                    </ul>
-                  </div>
-              {% endif %}
-            {% endwith %}
-
-            {% block content %}
-            {% endblock %}
+            </button>
+            <a class="navbar-brand" href="cafe">{{ current_user['firm_name'] }}</a>
         </div>
-    </body>
+        <div class="collapse navbar-collapse" id="mainNavbar">
+            <script>
+                function getGlyphIfApplicable(navElem) {
+                    if (navElem === 'user') {
+                        return '<span class="glyphicon glyphicon-user"></span> '
+                    }
+                    return ''
+                }
+
+                function addNavToBar(navMenu, htmlStr) {
+                    navMenu.forEach(function (navElem) {
+                        if (currPage === navElem[0]) {
+                            htmlStr += '<li class="active"><a href="' + navElem[0] + '">';
+                            htmlStr += getGlyphIfApplicable(navElem[0]);
+                            htmlStr += navElem[1] + '</a></li>'
+                        } else {
+                            htmlStr += '<li><a href="' + navElem[0] + '">';
+                            htmlStr += getGlyphIfApplicable(navElem[0]);
+                            htmlStr += navElem[1] + '</a></li>'
+                        }
+                    });
+                    return htmlStr
+                }
+
+                var navContainer = document.getElementById('mainNavbar');
+                var htmlStr = '';
+                htmlStr += '<ul class="nav navbar-nav">';
+                var currPage = $(this)[0].location.pathname.slice(1);
+                var navMenu;
+                var userType = {{ current_user.type }};
+                if (userType == 4) {
+                    navMenu = [
+                        ['cafe', 'Kafe'],
+                        ['authorities', 'Yetkililer']
+                    ];
+                } else if (userType == 7) {
+                    navMenu = [
+                        ['cafe', 'Kafe'],
+                        ['summary', 'Özet'],
+                        ['analysis', 'Analiz'],
+                        ['authorities', 'Yetkililer']
+                    ];
+                } else if (userType == 4) {
+                    navMenu = [];
+                }
+
+
+                htmlStr = addNavToBar(navMenu, htmlStr);
+                htmlStr += '</ul>';
+                htmlStr += '<ul class="nav navbar-nav navbar-right">';
+                navMenu = [
+                    ['user', '{{ current_user['name'] }}'],
+                    ['logout', 'Çıkış']
+                ];
+                htmlStr = addNavToBar(navMenu, htmlStr);
+                htmlStr += '</ul>';
+
+                navContainer.insertAdjacentHTML('beforeend', htmlStr);
+            </script>
+        </div>
+    </div>
+</nav>
+
+<div class="main">
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            <div class="alert alert-warning">
+                <ul class=flashes>
+                    {% for message in messages %}
+                        <li>{{ message }}</li>
+                    {% endfor %}
+                </ul>
+            </div>
+        {% endif %}
+    {% endwith %}
+
+    {% block content %}
+    {% endblock %}
+</div>
+</body>
 </html>

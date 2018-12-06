@@ -1,16 +1,16 @@
 {% for slot in slots %}
-<div class="col-sm-3 text-center">
-    <div class="panel panel-danger panel-slot">
-        <div class="panel-heading">
-            <h3> {{ slot.name }} </h3>
-        </div>
-        <div class="panel-body text-center">
-            <div class="col-md-6 text-center"> {{ slot.bill }} TL</div>
-            <div class="col-md-6 text-center"> {{ slot.time }} dk</div>
-        </div>
-        <div class="panel-footer">
-            {{ slot.playerCount }} <i class="fas fa-users"></i> {{ slot.extraCount }} <i class="fas fa-plus"></i>
+    <div class="col-sm-3 text-center">
+        <div class="panel panel-danger panel-slot">
+            <div class="panel-heading">
+                <h3> {{ slot.name }} </h3>
+            </div>
+            <div class="panel-body text-center">
+                <div class="col-md-6 text-center"> {{ slot.bill }} TL</div>
+                <div class="col-md-6 text-center"> {{ slot.time }} dk</div>
+            </div>
+            <div class="panel-footer">
+                {{ slot.playerCount }} <i class="fas fa-users"></i> {{ slot.extraCount }} <i class="fas fa-plus"></i>
+            </div>
         </div>
     </div>
-</div>
 {% endfor %}

@@ -121,14 +121,17 @@ def register_new_client():
 @login_required
 @decorators.limit_to_role('client')
 def register_new_user():
-    # todo: get firm_name from session
+    firm_name = current_user.firm_name
     name = request.form['name']
     email = request.form['email']
     phone = request.form['phone']
     password = request.form['password']
     if user_services.check_email(email):
+        flash('Kayıt başarılı.')
         user_services.add_user('user', firm_name, name, email, phone, get_hashed_password(password))
-    return render_template('user.html')
+    else:
+        flash('Kayıt başarısız. Bu email adresi zaten kullanılıyor.')
+    return redirect('user')
 
 
 @app.route('/getSlots')

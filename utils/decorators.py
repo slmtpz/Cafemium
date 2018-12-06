@@ -13,7 +13,7 @@ def limit_to_role(role):
             if current_role_power >= required_role_power:
                 return fnc(*args, **kwargs)
             else:
-                flash('Sayfaya erisim yetkiniz yok.')
+                flash('Sayfaya erişim yetkiniz yok.')
                 return redirect('user')
         return role_check_fnc
     return decorator

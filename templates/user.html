@@ -10,11 +10,11 @@
     var container = document.getElementById('container');
     var htmlStr = '';
     if ({{ current_user.type }} == roles.admin) {
-        htmlStr += '<button type="button" class="btn btn-primary" href="#signupClientModal" data-toggle="modal">Yeni musteri kaydet</button>'
+        htmlStr += '<button type="button" class="btn btn-primary" href="#signupClientModal" data-toggle="modal">Yeni müşteri kaydet</button>'
         htmlStr += '<br/><br/>';
     }
     if ({{ current_user.type }} == roles.client) {
-        htmlStr += '<button type="button" class="btn btn-primary" href="#signupUserModal" data-toggle="modal">Yeni kullanici kaydet</button>'
+        htmlStr += '<button type="button" class="btn btn-primary" href="#signupUserModal" data-toggle="modal">Yeni kullanıcı kaydet.</button>'
         htmlStr += '<br/><br/>';
     }
 
@@ -31,11 +31,11 @@
                 </div>
                 <div class="modal-body">
                     <div class="form-group">
-                        <label>Isletme Ismi</label>
+                        <label>Firma İsmi</label>
                         <input type="text" class="form-control" required="required" name="firm_name">
                     </div>
                     <div class="form-group">
-                        <label>Isim</label>
+                        <label>İsim</label>
                         <input type="text" class="form-control" required="required" name="name">
                     </div>
                     <div class="form-group">
@@ -48,7 +48,7 @@
                     </div>
                     <div class="form-group">
                         <div class="clearfix">
-                            <label>Sifre</label>
+                            <label>Şifre</label>
                         </div>
                         <input type="password" class="form-control" required="required" name="password">
                     </div>
@@ -70,7 +70,7 @@
                 </div>
                 <div class="modal-body">
                     <div class="form-group">
-                        <label>Isim</label>
+                        <label>İsim</label>
                         <input type="text" class="form-control" required="required" name="name">
                     </div>
                     <div class="form-group">
@@ -83,7 +83,7 @@
                     </div>
                     <div class="form-group">
                         <div class="clearfix">
-                            <label>Sifre</label>
+                            <label>Şifre</label>
                         </div>
                         <input type="password" class="form-control" required="required" name="password">
                     </div>

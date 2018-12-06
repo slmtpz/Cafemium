@@ -43,13 +43,13 @@ def login():
         password = request.form['inputPassword']
         user_instance = load_user(email)
         if user_instance is None:
-            flash('E-mail yanlis.')
+            flash('E-mail yanlış.')
             return redirect('login')
         elif is_password_correct(user_instance.password, password):
             login_user(user_instance)
             return redirect('cafe')
         else:
-            flash('Sifre yanlis.')
+            flash('Şifre yanlış.')
             return redirect('login')
 
     else:
@@ -110,10 +110,10 @@ def register_new_client():
     phone = request.form['phone']
     password = request.form['password']
     if user_services.check_email(email):
-        flash('Kayit basarili.')
+        flash('Kayıt başarılı.')
         user_services.add_user('client', firm_name, name, email, phone, get_hashed_password(password))
     else:
-        flash('Kayit basarisiz. Bu telefon numarasi zaten kullaniliyor.')
+        flash('Kayıt başarısız. Bu email adresi zaten kullanılıyor.')
     return redirect('user')
 
 

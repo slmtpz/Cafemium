@@ -1,4 +1,4 @@
-from cafemiummongo import db, ObjectId
+from dbconn import db, ObjectId
 from constants import roles
 
 

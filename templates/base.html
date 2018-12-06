@@ -10,7 +10,13 @@
         <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
         <link rel="stylesheet" type="text/css" href="../static/css/base.css">
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
-
+        <script>
+            var roles = {
+                'admin': 10,
+                'client': 7,
+                'user': 4
+            };
+        </script>
     </head>
     <body>
         <nav class="navbar navbar-inverse navbar-fixed-top">
@@ -21,7 +27,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
               </button>
-              <a class="navbar-brand" href="cafe">Cafemium</a>
+              <a class="navbar-brand" href="cafe">{{ current_user['firm_name'] }}</a>
             </div>
             <div class="collapse navbar-collapse" id="mainNavbar">
                  <script>
@@ -67,8 +73,6 @@
                       htmlStr += '</ul>';
 
                       navContainer.insertAdjacentHTML('beforeend', htmlStr);
-
-                      console.log(self)
                   </script>
             </div>
           </div>

@@ -1,4 +1,5 @@
 from cafemiummongo import db, ObjectId
+from constants import roles
 
 
 class User:
@@ -12,7 +13,7 @@ class User:
         else:
             self.email_invalid = False
             self.type = user_doc['type']
-            self.firmName = user_doc['firmName']
+            self.firm_name = user_doc['firm_name']
             self.name = user_doc['name']
             self.email = user_doc['email']
             self.phone = user_doc['phone']
@@ -30,8 +31,8 @@ def get_user(user_email):
     return db.users.find_one({'email': user_email})
 
 
-def check_phone(phone):
-    result = db.users.find_one({'phone': phone})
+def check_email(email):
+    result = db.users.find_one({'email': email})
     if result is None:
         return 1
     else:
@@ -40,8 +41,8 @@ def check_phone(phone):
 
 def add_user(user_type, firm_name, name, email, phone, hashed_password):
     db.users.insert_one({
-        'type': user_type,
-        'firmName': firm_name,
+        'type': roles[user_type],
+        'firm_name': firm_name,
         'name': name,
         'email': email,
         'phone': phone,

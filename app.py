@@ -4,6 +4,7 @@ from flask_login import LoginManager, login_user, logout_user, login_required, c
 from services import user_services
 from werkzeug.security import generate_password_hash, check_password_hash
 from config import SECRET_KEY
+from utils import decorators
 
 
 app = Flask(__name__)
@@ -46,7 +47,7 @@ def login():
             return redirect('login')
         elif is_password_correct(user_instance.password, password):
             login_user(user_instance)
-            return redirect('user')
+            return redirect('cafe')
         else:
             flash('Sifre yanlis.')
             return redirect('login')
@@ -75,12 +76,14 @@ def serve_cafe_page():
 
 @app.route('/summary')
 @login_required
+@decorators.limit_to_role('client')
 def serve_summary_page():
     return render_template('summary.html')
 
 
 @app.route('/analysis')
 @login_required
+@decorators.limit_to_role('client')
 def serve_analysis_page():
     return render_template('analysis.html')
 
@@ -99,13 +102,14 @@ def serve_user_page():
 
 @app.route('/signupClient', methods=['POST'])
 @login_required
+@decorators.limit_to_role('admin')
 def register_new_client():
-    firm_name = request.form['firmName']
+    firm_name = request.form['firm_name']
     name = request.form['name']
     email = request.form['email']
     phone = request.form['phone']
     password = request.form['password']
-    if user_services.check_phone(phone):
+    if user_services.check_email(email):
         flash('Kayit basarili.')
         user_services.add_user('client', firm_name, name, email, phone, get_hashed_password(password))
     else:
@@ -115,13 +119,14 @@ def register_new_client():
 
 @app.route('/signupUser', methods=['POST'])
 @login_required
+@decorators.limit_to_role('client')
 def register_new_user():
     # todo: get firm_name from session
     name = request.form['name']
     email = request.form['email']
     phone = request.form['phone']
     password = request.form['password']
-    if user_services.check_phone(phone):
+    if user_services.check_email(email):
         user_services.add_user('user', firm_name, name, email, phone, get_hashed_password(password))
     return render_template('user.html')
 
